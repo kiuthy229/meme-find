@@ -37,7 +37,6 @@ async function searchImages(keyword: string) {
   }));
 }
 
-// API endpoint
 app.post('/crawl', async (req, res) => {
   try {
     const { keyword } = req.body;
