@@ -28,6 +28,12 @@ jobs:
         working-directory: apps/web
         run: npm run build
 
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: github-pages
+          path: apps/web/dist
+
   deploy:
     environment:
       name: github-pages
@@ -35,6 +41,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: github-pages
+          path: ./dist
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
