@@ -1,0 +1,19 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Meme {
+  id        Int      @id @default(autoincrement()) @map("id")
+  title     String   @map("title")
+  imageUrl  String   @map("image_url")
+  tags      String[] @map("tags")
+  embedding Json     @map("embedding")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("meme")
+}
