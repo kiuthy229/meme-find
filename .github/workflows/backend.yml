@@ -28,14 +28,6 @@ jobs:
         working-directory: apps/api
         run: npm install
 
-      - name: Generate Prisma Client
-        working-directory: packages/db
-        run: npx prisma generate
-
-      - name: Run Prisma migrations
-        working-directory: packages/db
-        run: npx prisma migrate deploy
-
       - name: Test backend
         working-directory: apps/api
         run: node src/server.js
