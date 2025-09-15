@@ -1,6 +1,6 @@
 # Meme Find
 
-![App Banner](./demo1.png)
+![App Banner](./assets/demo1.png)
 
 ## Introduction
 
@@ -28,7 +28,7 @@ Key features include:
 
 ## Screenshots
 
-![Search Bar UI](./demo2.png)
+![Search Bar UI](./assets/demo2.png)
 
 > Replace the above image paths with actual screenshots from your app.
 
