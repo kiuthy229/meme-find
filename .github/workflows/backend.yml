@@ -39,10 +39,3 @@ jobs:
       - name: Test backend
         working-directory: apps/api
         run: node src/server.js
-
-      - name: Deploy to Supabase / Cloud
-        run: |
-          echo "Trigger your cloud deploy here"
-          # Example for Supabase CLI
-          # supabase login --token $SUPABASE_TOKEN
-          # supabase deploy --project-ref $SUPABASE_PROJECT_REF
