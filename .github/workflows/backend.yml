@@ -1,0 +1,41 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  backend-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      SEARCH_ENGINE_ID: ${{ secrets.SEARCH_ENGINE_ID }}
+      DIRECT_URL: ${{ secrets.DIRECT_URL }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: apps/api
+        run: npm install
+
+      - name: Generate Prisma Client
+        working-directory: packages/db
+        run: npx prisma generate
+
+      - name: Run Prisma migrations
+        working-directory: packages/db
+        run: npx prisma migrate deploy
+
+      - name: Test backend
+        working-directory: apps/api
+        run: node src/server.js
