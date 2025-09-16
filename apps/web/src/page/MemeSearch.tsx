@@ -3,6 +3,8 @@ import axios from 'axios';
 import MemeCard from '../components/MemeCard';
 import SearchBar from '../components/SearchBar';
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 export default function MemeSearch() {
   const [keyword, setKeyword] = useState('');
   const [memes, setMemes] = useState<any[]>([]);
@@ -12,7 +14,7 @@ export default function MemeSearch() {
     if (!keyword) return;
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:3000/crawl', { keyword });
+      const res = await axios.post(`${API_URL}/crawl`, { keyword });
       setMemes(res.data);
     } catch (err) {
       console.error(err);
