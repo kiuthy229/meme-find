@@ -1,0 +1,20 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "env": [
+        "DATABASE_URL",
+        "DIRECT_URL",
+        "GOOGLE_API_KEY",
+        "SEARCH_ENGINE_ID"
+      ],
+      "outputs": ["dist/**"]
+    },
+    "web#build": {
+      "dependsOn": ["^build"],
+      "env": ["VITE_API_URL"],
+      "outputs": [".dist/**"]
+    }
+  }
+}
